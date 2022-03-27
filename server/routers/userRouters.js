@@ -1,10 +1,9 @@
 const Router = require('express')
 const router = new Router()
+const userController = require('../controllers/userControllers.js')
 
-router.post('/registration', ) // регистрация пользователя
-router.post('/login', ) // вход пользователя
-router.get('/auth', (req, res) => {
-    res.json({message: "ALL WORKING"})
-}) // аутентификая пользователя
+router.post('/registration', userController.registration) // регистрация пользователя
+router.post('/login', userController.login) // вход пользователя
+router.get('/auth', userController.check) // аутентификая пользователя
 
 module.exports = router
