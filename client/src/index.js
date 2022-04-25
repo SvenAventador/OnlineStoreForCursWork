@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import userStore from './store/userStore';
+import deviceStore from './store/deviceStore';
+
+export const Context = createContext(null)
 
 ReactDOM.render(
-  <React.StrictMode>
+
+  <Context.Provider value={{ // получение данных из контекста объектов
+    user: new userStore(),
+    device: new deviceStore()
+  }}>
     <App />
-  </React.StrictMode>,
+  </Context.Provider>,
+
   document.getElementById('root')
 );
 
