@@ -3,18 +3,18 @@ import { observer } from "mobx-react-lite";
 import { Context } from "../index";
 import { Row, Card } from "react-bootstrap";
 
-//TODO1:38:...
+//TODO ПОНЯТЬ ПОЧЕМУ BRANDBAR РАБОТАЕТ НЕ ТАК.
 const BrandBar = observer(() => {
 
   const { device } = useContext(Context)
 
   return (
 
-    <Row className='d-flex'>
+    <Row className="d-flex">
 
       {device.brands.map(brand =>
 
-        <Card key={brand.id} className='p-8'>
+        <Card key={brand.id} className='p-3' style={{cursor: 'pointer'}} onClick={() => device.setSelectedBrand(brand)} border={brand.id === device.selectedBrand.id ? 'danger' : 'light'}>
           {brand.name}
         </Card>
 

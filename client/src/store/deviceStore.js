@@ -7,16 +7,18 @@ export default class deviceStore {
     this._types = [
       {id: 1, name: 'Холодильники'},
       {id: 2, name: 'Смартфоны'},
-      {id: 3, name: 'Смартфоны'},
-      {id: 4, name: 'Смартфоны'},
-      {id: 5, name: 'Смартфоны'},
+      {id: 3, name: 'Ноутбуки'},
+      {id: 4, name: 'Мультиварки'},
+      {id: 5, name: 'Телевизоры'},
       {id: 6, name: 'Смартфоны'},
 
     ]
 
     this._brands = [
       {id: 1, name: 'Samsung'},
-      {id: 2, name: 'Apple'}
+      {id: 2, name: 'Apple'},
+      {id: 3, name: 'Lenovo'},
+      {id: 4, name: 'Asus'},
     ]
 
     this._device = [
@@ -27,6 +29,7 @@ export default class deviceStore {
     ]
 
     this._selectedType = {}
+    this._selectedBrand = {}
     makeAutoObservable(this)
 
   }
@@ -37,6 +40,10 @@ export default class deviceStore {
 
   setSelectedType(type) {
     this._selectedType = type
+  }
+
+  setSelectedBrand(brand) {
+    this._selectedBrand = brand
   }
 
   setBrands(brands) {
@@ -61,6 +68,10 @@ export default class deviceStore {
 
   get devices() { // гетеры для оптимизации переменных, которые были изменены
     return this._device
+  }
+
+  get selectedBrand() { // гетеры для оптимизации переменных, которые были изменены
+    return this._selectedBrand
   }
 
 }
