@@ -1,5 +1,5 @@
 import { ADMIN_ROUTE, CART_ROUTE, DEVICE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "./utils/consts"
-import Admin from "./pages/AdminPanel"
+import AdminPanel from "./pages/AdminPanel"
 import Cart from "./pages/Cart"
 import Auth from "./pages/Auth"
 import Shop from "./pages/Shop"
@@ -9,7 +9,7 @@ export const authRouter = [ // марщруты на которые может �
 
   {
     path: ADMIN_ROUTE,
-    Component: Admin
+    Component: AdminPanel
   },
 
   {
