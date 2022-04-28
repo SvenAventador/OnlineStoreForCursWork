@@ -4,7 +4,7 @@ const {User, Cart} = require('../models/models')
 const jwt = require('jsonwebtoken') // импорт jwt токена для регистрации и авторизации пользователя
 
 const jwtGenerate = (id, email, role) => {
-    
+
     return jwt.sign({id, email, role}, process.env.SECRET_KEY, {expiresIn: '24h'}) // jwt.sign(payload, secretOrPrivateKey, [options, callback])
                                                                                                        // payload - данные пользователя
                                                                                                        // secretOrPrivateKey - секретный ключ, который знать должен "хранитель" сервера
@@ -34,7 +34,7 @@ class UserController {
 
         const cart = await Cart.create({userId: user.id}) // создание корзины под определенного пользователя
 
-        const token = jwtGenerate(user.id, user.email, user.role)                                                                                 
+        const token = jwtGenerate(user.id, user.email, user.role)
 
         return res.json({token})
 
@@ -62,7 +62,7 @@ class UserController {
     }
 
     async check(req, res, next) { // авторизирован ли пользователь?
-        
+
         const token = jwtGenerate(req.user.id, req.user.email, req.user.role)
         return res.json({token})
 

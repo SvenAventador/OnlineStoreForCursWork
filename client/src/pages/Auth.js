@@ -1,15 +1,46 @@
 // страница для регистрации
 
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Card, Container, Form, Row } from 'react-bootstrap';
-import { NavLink, useLocation } from 'react-router-dom'; // использование хуков для получения настоящей страницы нахождения
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/consts';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'; // использование хуков для получения настоящей страницы нахождения
+import { login, registration } from '../API/userAPI';
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from '../utils/consts';
+import { observer } from 'mobx-react-lite'
+import { Context } from '../index.js';
 
-const Auth = () => {
+const Auth = observer(() => {
 
+  const { user } = useContext(Context)
   const location = useLocation()
+  const history = useNavigate()
   const isLogin = location.pathname === LOGIN_ROUTE
-  console.log(location)
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const regAuth = async () => {
+
+    try {
+      let data;
+
+      if (isLogin) {
+         data = await login(email, password)
+      }
+
+      else {
+         data = await registration(email, password)
+      }
+
+      user.setUser(user)
+      user.setIsAuth(true)
+      history(SHOP_ROUTE)
+
+    } catch(e) {
+      alert(e.response.data.message)
+    }
+
+
+  }
 
   return (
 
@@ -22,11 +53,16 @@ const Auth = () => {
           <Form.Control
             className='mt-3'
             placeholder='Введите Ваш email...'
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
 
           <Form.Control
             className='mt-3'
             placeholder='Введите Ваш пароль...'
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            type='password'
           />
 
           <Row className='d-flex justify-content-between mt-3 pl-3 pr-3'>
@@ -41,7 +77,7 @@ const Auth = () => {
               </div>
             }
 
-            <Button variant={'outline-success'}>{isLogin ? 'Войти' : 'Регистрация'}</Button>
+            <Button variant={'outline-success'} onClick={regAuth}>{isLogin ? 'Войти' : 'Регистрация'}</Button>
 
           </Row>
 
@@ -52,6 +88,6 @@ const Auth = () => {
 
   );
 
-};
+});
 
 export default Auth;

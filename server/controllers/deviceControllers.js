@@ -8,7 +8,7 @@ class DeviceController {
     async create(req, res, next) { // создание девайса
         try {
 
-            const {name, price, brandId, typeId, info} = req.body
+            let {name, price, brandId, typeId, info} = req.body
             const {img} = req.files
             let fileName = uuid.v4() + ".jpg"
             img.mv(path.resolve(__dirname, '..', 'static', fileName)) // path.resolve - адаптация под выбранную ОС
@@ -16,6 +16,7 @@ class DeviceController {
                                                                       // '..' - путь на одну директорию назад
                                                                       // 'static' - нужная папка
                                                                       //fileName - файл фотографии, для выгрузки на сервер
+            const device = await Device.create({name, price, brandId, typeId, img: fileName});
 
             if (info) {
 
@@ -30,11 +31,10 @@ class DeviceController {
 
             }
 
-            const device = await Device.create({name, price, brandId, typeId, img: fileName})
             return res.json(device)
 
         }
-        
+
         catch(e) {
             next(ApiError.NotFound(e.message))
         }
@@ -81,7 +81,7 @@ class DeviceController {
                 include: [{model: DeviceInfo, as: 'info'}] // массив характеристик
             },
         )
-        return res.json(device)  
+        return res.json(device)
     }
 
 }

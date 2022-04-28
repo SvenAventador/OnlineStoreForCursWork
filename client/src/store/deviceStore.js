@@ -1,35 +1,22 @@
-import {makeAutoObservable} from "mobx" // слежка за переменными, которые будут переданы в параметр функции
+import { makeAutoObservable } from "mobx" // слежка за переменными, которые будут переданы в параметр функции
 
 export default class deviceStore {
 
   constructor() {
 
-    this._types = [
-      {id: 1, name: 'Холодильники'},
-      {id: 2, name: 'Смартфоны'},
-      {id: 3, name: 'Ноутбуки'},
-      {id: 4, name: 'Мультиварки'},
-      {id: 5, name: 'Телевизоры'},
-      {id: 6, name: 'Смартфоны'},
+    this._types = []
 
-    ]
+    this._brands = []
 
-    this._brands = [
-      {id: 1, name: 'Samsung'},
-      {id: 2, name: 'Apple'},
-      {id: 3, name: 'Lenovo'},
-      {id: 4, name: 'Asus'},
-    ]
-
-    this._device = [
-      {id: 1, name: "Apple 12 pro", price: 75000, rating: 5, img: `https://252919.selcdn.ru/shoplot/32187755.jpg`},
-      {id: 2, name: "Apple 12 pro", price: 75000, rating: 5, img: `https://252919.selcdn.ru/shoplot/32187755.jpg`},
-      {id: 3, name: "Apple 12 pro", price: 75000, rating: 5, img: `https://252919.selcdn.ru/shoplot/32187755.jpg`},
-      {id: 4, name: "Apple 12 pro", price: 75000, rating: 5, img: `https://252919.selcdn.ru/shoplot/32187755.jpg`},
-    ]
+    this._device = []
 
     this._selectedType = {}
     this._selectedBrand = {}
+
+    this._page = 1
+    this._totalCount = 0
+    this._limit = 3
+
     makeAutoObservable(this)
 
   }
@@ -39,11 +26,21 @@ export default class deviceStore {
   }
 
   setSelectedType(type) {
+    this.setPage(1)
     this._selectedType = type
   }
 
   setSelectedBrand(brand) {
+    this.setPage(1)
     this._selectedBrand = brand
+  }
+
+  setPage(page) {
+    this._page = page
+  }
+
+  setTotalCount(count) {
+    this._totalCount = count
   }
 
   setBrands(brands) {
@@ -72,6 +69,16 @@ export default class deviceStore {
 
   get selectedBrand() { // гетеры для оптимизации переменных, которые были изменены
     return this._selectedBrand
+  }
+
+  get totalCount() { // гетеры для оптимизации переменных, которые были изменены
+    return this._totalCount
+  }
+  get page() { // гетеры для оптимизации переменных, которые были изменены
+    return this._page
+  }
+  get limit() { // гетеры для оптимизации переменных, которые были изменены
+    return this._limit
   }
 
 }

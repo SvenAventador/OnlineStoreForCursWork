@@ -14,7 +14,7 @@ const BrandBar = observer(() => {
 
       {device.brands.map(brand =>
 
-        <Card key={brand.id} className='p-3' style={{cursor: 'pointer'}} onClick={() => device.setSelectedBrand(brand)} border={brand.id === device.selectedBrand.id ? 'danger' : 'light'}>
+        <Card key={brand.id}  className='p-3' style={{cursor: 'pointer', width: '20%' }} onClick={() => device.setSelectedBrand(brand)} border={brand.id === device.selectedBrand.id ? 'danger' : 'black'}>
           {brand.name}
         </Card>
 
