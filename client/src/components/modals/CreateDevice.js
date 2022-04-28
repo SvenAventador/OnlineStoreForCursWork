@@ -62,7 +62,7 @@ const CreateDevice = observer(({ show, onHide }) => {
     <Modal show={show} onHide={onHide} size='lg' centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Добавить тип
+          Добавить устройство
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

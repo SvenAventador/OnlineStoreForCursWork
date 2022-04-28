@@ -7,10 +7,9 @@ import { DEVICE_ROUTE } from "../utils/consts"
 
 const DeviceItem = ({ device }) => {
 
-  //TODO Разобраться с рассоединением типа и звезд
-
   const history = useNavigate();
-  console.log(history);
+
+  //TODO Создать после первого дива обращение к брендам
 
   return (
 
@@ -19,8 +18,6 @@ const DeviceItem = ({ device }) => {
       <Card style={{ width: 150, cursor: 'pointer' }} border={'black'}>
         <Image width={150} height={150} src={process.env.REACT_APP_API_URL + device.img} />
         <div className="text-black-50 mt-1 d-flex justify-content-betweeen align-items-center">
-
-          <div>Самсунг...</div>
 
           <div className="d-flex align-items-center">
             <div>{device.rating}</div>

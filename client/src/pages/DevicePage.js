@@ -9,10 +9,10 @@ import { fetchOneDevice } from '../API/deviceAPI';
 
 const DevicePage = () => {
 
-  const [device, setDevice] = useState({info: []})
-  const {id} = useParams() // получение параметров строки запроса
+  const [device, setDevice] = useState({ info: [] })
+  const { id } = useParams() // получение параметров строки запроса
 
-  useEffect( () => {
+  useEffect(() => {
     fetchOneDevice(id).then(data => setDevice(data))
   }, [])
 
@@ -43,7 +43,8 @@ const DevicePage = () => {
 
             <Card className='d-flex flex-column align-items-center justify-content-around' style={{ width: 300, height: 300, fontSize: 32, border: '5px solid lightgray' }}>
               <h3>От {device.price} руб.</h3>
-              <Button variant={'outline-success'}>Добавить в корзину</Button>
+              <Button variant={'outline-success'} onclick={alert('Поздравляем с покупкой! Спасибо, что выбрали нас!')}>Купить</Button>
+
             </Card>
 
           </Col>
@@ -53,7 +54,7 @@ const DevicePage = () => {
           <h1>Характеристики</h1>
           {device.info.map((info, index) =>
 
-            <Row key={info.id} style={{background: index % 2 === 0 ? 'lightgray' : 'pink', padding: 10}}>
+            <Row key={info.id} style={{ background: index % 2 === 0 ? 'lightgray' : 'pink', padding: 10 }}>
               {info.title}:{info.description}
             </Row>
 
@@ -61,7 +62,7 @@ const DevicePage = () => {
         </Row>
 
       </Container>
-    </div>
+    </div >
 
   );
 
