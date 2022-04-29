@@ -37,10 +37,10 @@ export const createDevice = async(device) => {
 
 }
 
-export const fetchDevice = async(brandId, typeId, page, limit= 5) => {
+export const fetchDevice = async(typeId, brandId, page, limit= 5) => {
 
   const {data} = await $host.get('api/device', {params: {
-    brandId, typeId, page, limit
+    typeId, brandId, page, limit
   }})
   return data
 

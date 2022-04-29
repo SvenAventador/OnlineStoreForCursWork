@@ -70,7 +70,6 @@ const CreateDevice = observer(({ show, onHide }) => {
         <Form>
 
           <Dropdown className='mt-2 mb-2'>
-            <Dropdown.Toggle>{device.selectedType.name || "Выберите тип"}</Dropdown.Toggle>
             <Dropdown.Menu>
               {device.types.map(type =>
 
@@ -78,6 +77,7 @@ const CreateDevice = observer(({ show, onHide }) => {
 
               )}
             </Dropdown.Menu>
+            <Dropdown.Toggle>{device.selectedType.name || 'Выберите тип'}</Dropdown.Toggle>
           </Dropdown>
 
           <Dropdown className='mt-2 mb-2'>
@@ -95,7 +95,7 @@ const CreateDevice = observer(({ show, onHide }) => {
           <Form.Control placeholder="Введите стоимость устройства устройства" type='number' className='mt-3' value={price} onChange={e => setPrice(Number(e.target.value))} />
           <Form.Control type='file' className='mt-3' onChange={selectFile} />
           <hr />
-          <Button variant={'outline-dark'} onClick={addInfo}>Добавить новое свойство</Button>
+          <Button variant={'outline-dark'} onClick={addInfo}>Добавить новую характеристику</Button>
           {
             info.map(i =>
 
@@ -124,7 +124,7 @@ const CreateDevice = observer(({ show, onHide }) => {
       </Modal.Body>
       <Modal.Footer>
 
-        <Button variant="outline-success" onClick={addDevice}>Добавить тип</Button>
+        <Button variant="outline-success" onClick={addDevice}>Добавить устройство</Button>
         <Button variant="outline-danger" onClick={onHide}>Закрыть</Button>
 
       </Modal.Footer>

@@ -9,7 +9,7 @@ const Pages = observer(() => {
     const pages = []
 
     for (let i = 0; i < pageCount; i++) {
-        pages.push(i + 1)
+        pages.push(i+1)
     }
 
     return (
