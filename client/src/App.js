@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite'
 import { Context } from './index.js';
 import { check } from './API/userAPI';
 import { Spinner } from 'react-bootstrap';
+import FooterBar from './components/FooterBar';
 
 
 const App = observer(() => {
@@ -41,6 +42,8 @@ const App = observer(() => {
       <NavBar />
 
       <AppRouter />
+
+      <FooterBar/>
     </BrowserRouter>
 
   );
