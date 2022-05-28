@@ -18,7 +18,7 @@ const DevicePage = () => {
 
   return (
 
-    <div>
+    <div data-testid="devicePage">
       <Container className='mt-3'>
 
         <Row>
@@ -43,7 +43,7 @@ const DevicePage = () => {
 
             <Card className='d-flex flex-column align-items-center justify-content-around' style={{ width: 300, height: 300, fontSize: 32, border: '5px solid lightgray' }}>
               <h3>От {device.price} руб.</h3>
-              <Button variant={'outline-success'} onclick={alert('Поздравляем с покупкой! Спасибо, что выбрали нас!')}>Купить</Button>
+              <Button variant={'outline-success'}>Купить</Button>
 
             </Card>
 

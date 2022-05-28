@@ -24,18 +24,18 @@ const Auth = observer(() => {
       let data;
 
       if (isLogin) {
-         data = await login(email, password)
+        data = await login(email, password)
       }
 
       else {
-         data = await registration(email, password)
+        data = await registration(email, password)
       }
 
       user.setUser(user)
       user.setIsAuth(true)
       history(SHOP_ROUTE)
 
-    } catch(e) {
+    } catch (e) {
       alert(e.response.data.message)
     }
 
@@ -43,48 +43,51 @@ const Auth = observer(() => {
   }
 
   return (
+    <div data-testid="auth">
+      <Container className="d-flex justify-content-center align-items-center" style={{ height: window.innerHeight - 54 }}>
 
-    <Container className="d-flex justify-content-center align-items-center" style={{ height: window.innerHeight - 54 }}>
+        <Card stye={{ width: 600 }} className="p-5">
+          <h2 className='m-auto'>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
+          <Form className='d-flex flex-column'>
 
-      <Card stye={{ width: 600 }} className="p-5">
-        <h2 className='m-auto'>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
-        <Form className='d-flex flex-column'>
+            <Form.Control
+              id="login"
+              className='mt-3'
+              placeholder='Введите Ваш email...'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
 
-          <Form.Control
-            className='mt-3'
-            placeholder='Введите Ваш email...'
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
+            <Form.Control
+              id="password"
+              className='mt-3'
+              placeholder='Введите Ваш пароль...'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              type='password'
+            />
 
-          <Form.Control
-            className='mt-3'
-            placeholder='Введите Ваш пароль...'
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            type='password'
-          />
+            <Row className='d-flex justify-content-between mt-3 pl-3 pr-3'>
 
-          <Row className='d-flex justify-content-between mt-3 pl-3 pr-3'>
+              {isLogin ?
+                <div>
+                  Нет аккаунта? <NavLink to={REGISTRATION_ROUTE}>Зарегистрируйся!</NavLink>
+                </div>
+                :
+                <div>
+                  Есть аккаунт? <NavLink to={LOGIN_ROUTE}>Войдите!</NavLink>
+                </div>
+              }
 
-            {isLogin ?
-              <div>
-                Нет аккаунта? <NavLink to={REGISTRATION_ROUTE}>Зарегистрируйся!</NavLink>
-              </div>
-              :
-              <div>
-                Есть аккаунт? <NavLink to={LOGIN_ROUTE}>Войдите!</NavLink>
-              </div>
-            }
+              <Button variant={'outline-success'} onClick={regAuth}>{isLogin ? 'Войти' : 'Регистрация'}</Button>
 
-            <Button variant={'outline-success'} onClick={regAuth}>{isLogin ? 'Войти' : 'Регистрация'}</Button>
+            </Row>
 
-          </Row>
+          </Form>
+        </Card>
 
-        </Form>
-      </Card>
-
-    </Container>
+      </Container>
+    </div>
 
   );
 

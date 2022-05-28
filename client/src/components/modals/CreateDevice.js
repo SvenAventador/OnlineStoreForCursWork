@@ -4,7 +4,6 @@ import { Button, Col, Dropdown, Form, Row } from "react-bootstrap";
 import { Context } from '../../index';
 import { createDevice, fetchBrand, fetchDevice, fetchType } from '../../API/deviceAPI';
 import { observer } from 'mobx-react-lite';
-
 const CreateDevice = observer(({ show, onHide }) => {
 
   const { device } = useContext(Context)

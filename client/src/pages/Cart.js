@@ -6,7 +6,7 @@ const Cart = () => {
 
   return (
 
-    <div>
+    <div data-testid="cart">
       CART
     </div>
 

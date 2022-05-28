@@ -12,45 +12,46 @@ import Pages from '../components/Pages';
 
 const Shop = observer(() => {
 
-  const {device} = useContext(Context)
+  const { device } = useContext(Context)
 
   useEffect(() => {
     fetchType().then(data => device.setTypes(data))
     fetchBrand().then(data => device.setBrands(data))
     fetchDevice(null, null, 1, 8).then(data => {
-        device.setDevices(data.rows)
-        device.setTotalCount(data.count)
+      device.setDevices(data.rows)
+      device.setTotalCount(data.count)
     })
-}, [])
+  }, [])
 
-useEffect(() => {
+  useEffect(() => {
     fetchDevice(device.selectedType.id, device.selectedBrand.id, device.page, 8).then(data => {
-        device.setDevices(data.rows)
-        device.setTotalCount(data.count)
+      device.setDevices(data.rows)
+      device.setTotalCount(data.count)
     })
-}, [device.page, device.selectedType, device.selectedBrand,])
+  }, [device.page, device.selectedType, device.selectedBrand,])
 
   return (
+    <div data-testid="Shop">
+      <Container>
+        <Row className='mt-2'>
 
-    <Container>
-      <Row className='mt-2'>
+          <Col md={3}>
+            <TypeBar />
+          </Col>
 
-        <Col md={3}>
-          <TypeBar />
-        </Col>
+          <Col md={9}>
+            <BrandBar />
+            <DeviceList />
+            <Pages />
+          </Col>
 
-        <Col md={9}>
-          <BrandBar />
-          <DeviceList/>
-          <Pages/>
-        </Col>
+        </Row>
 
-      </Row>
-
-    </Container>
-
+      </Container>
+    </div>
   );
 
 });
+
 
 export default Shop;
